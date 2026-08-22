@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Ops for Boutique Agencies</title>
+  <meta name="description" content="We find the 3 workflows eating your week, automate the #1, and keep it running — fixed price, shipped in days." />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --bg-elevated: #171a21;
+      --bg-card: #1c2029;
+      --border: #2a3040;
+      --text: #e8eaef;
+      --muted: #9aa3b5;
+      --accent: #6ee7b7;
+      --accent-dim: #34d399;
+      --accent-text: #0b1f17;
+      --warn: #fbbf24;
+      --radius: 12px;
+      --max: 720px;
+      --font: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(15, 17, 21, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+    .nav-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--accent-text);
+      font-weight: 650;
+      font-size: 0.85rem;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--accent-dim); text-decoration: none; }
+    section { padding: 3.5rem 0; }
+    section + section { border-top: 1px solid var(--border); }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 650;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+    h1 {
+      font-size: clamp(1.85rem, 5vw, 2.55rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.1rem;
+      font-weight: 750;
+    }
+    h2 {
+      font-size: clamp(1.35rem, 3.5vw, 1.7rem);
+      letter-spacing: -0.015em;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    h3 { font-size: 1.1rem; margin-bottom: 0.4rem; font-weight: 650; }
+    .lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      max-width: 38em;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--accent-text);
+      font-weight: 700;
+      padding: 0.85rem 1.35rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .btn-primary:hover { background: var(--accent-dim); text-decoration: none; }
+    .btn-secondary {
+      display: inline-block;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-weight: 600;
+      padding: 0.8rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      background: var(--bg-elevated);
+    }
+    .btn-secondary:hover { border-color: var(--muted); text-decoration: none; }
+    .note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--warn);
+      background: rgba(251, 191, 36, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
+      text-align: left;
+    }
+    .split { display: grid; gap: 1rem; }
+    @media (min-width: 560px) {
+      .split.two { grid-template-columns: 1fr 1fr; }
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.35rem;
+    }
+    .card.for { border-color: rgba(110, 231, 183, 0.35); }
+    .card ul {
+      margin: 0.6rem 0 0 1.1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .card li { margin-bottom: 0.35rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th, td {
+      text-align: left;
+      padding: 0.85rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    tr:last-child td { border-bottom: none; }
+    .table-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .price {
+      font-size: 1.35rem;
+      font-weight: 750;
+      color: var(--accent);
+      margin: 0.25rem 0 0.75rem;
+    }
+    .price small {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      display: block;
+      margin-top: 0.15rem;
+    }
+    .offer-grid { display: grid; gap: 1rem; }
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      display: grid;
+      gap: 0.85rem;
+    }
+    .steps li {
+      counter-increment: step;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem 1rem 3.25rem;
+      position: relative;
+      color: var(--muted);
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--accent-text);
+      font-weight: 750;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .steps strong { color: var(--text); }
+    .cta-block {
+      background: linear-gradient(160deg, #1a2430 0%, var(--bg-card) 100%);
+      border: 1px solid rgba(110, 231, 183, 0.3);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .cta-block .lead { margin-left: auto; margin-right: auto; }
+    footer {
+      padding: 2rem 0 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .fine { font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="logo" href="#">AI Ops <span>for Agencies</span></a>
+      <a class="nav-cta" href="#checkout">Book an Audit</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero">
+      <div class="wrap">
+        <p class="eyebrow">Fixed-price AI ops</p>
+        <h1>We find the 3 workflows eating your week, automate the #1, and keep it running.</h1>
+        <p class="lead">Fixed price. Shipped in days. Built for boutique agencies — not enterprise theater.</p>
+        <div class="btn-row">
+          <a class="btn-primary" href="#checkout">Start with an Audit</a>
+          <a class="btn-secondary" href="mailto:hello.aiops.agencies@gmail.com?subject=AI%20Ops%20Audit">Email us</a>
+        </div>
+        <p class="fine">Short note → 30-min intake. No deck. No “AI strategy workshop.”</p>
+      </div>
+    </section>
+
+    <section id="who">
+      <div class="wrap">
+        <p class="eyebrow">Fit</p>
+        <h2>Who it’s for / who it’s not for</h2>
+        <div class="split two">
+          <div class="card for">
+            <h3>For</h3>
+            <ul>
+              <li>Boutique agencies, <strong style="color:var(--text)">2–15 people</strong></li>
+              <li>Founders &amp; ops leads drowning in lead intake, support triage, client reporting, or CRM busywork</li>
+              <li>Cashflow-safe automation — not a 6-month “AI transformation”</li>
+            </ul>
+          </div>
+          <div class="card not">
+            <h3>Not for</h3>
+            <ul>
+              <li>Enterprises with procurement theater</li>
+              <li>Agencies that want custom ML research</li>
+              <li>Teams that won’t share workflow access for a week</li>
+              <li>Anyone hunting free consulting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflows">
+      <div class="wrap">
+        <p class="eyebrow">Pain</p>
+        <h2>Painful weekly workflows we target</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Workflow</th><th>What breaks</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Lead intake</strong></td><td>Forms → Slack → spreadsheet → forgotten follow-ups</td></tr>
+              <tr><td><strong>Support triage</strong></td><td>Inbox chaos, wrong assignee, same questions answered 40×</td></tr>
+              <tr><td><strong>Client reporting</strong></td><td>Manual data pulls, copy-paste decks, Sunday-night scramble</td></tr>
+              <tr><td><strong>CRM hygiene</strong></td><td>Stale stages, missing notes, deals that die in silence</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine" style="margin-top:1rem">If one of these steals ≥5 hrs/week from a human who should be billing, you’re in range.</p>
+      </div>
+    </section>
+
+    <section id="offers">
+      <div class="wrap">
+        <p class="eyebrow">Pricing</p>
+        <h2>Offer menu</h2>
+        <div class="offer-grid">
+          <article class="card">
+            <h3>1. AI Ops Audit</h3>
+            <p class="price">$500 <small>First 5 clients: $350–$500</small></p>
+            <p style="color:var(--muted); margin-bottom:0.75rem"><strong style="color:var(--text)">5–7 day fixed deliverable:</strong></p>
+            <ul style="margin-left:1.1rem; color:var(--muted); font-size:0.95rem">
+              <li>Top 3 automation candidates ranked by time saved × feasibility</li>
+              <li>Time/ROI estimate per candidate</li>
+              <li>Risks and failure modes (what breaks, who owns it)</li>
+              <li>Fixed-price build proposal for #1</li>
+            </ul>
+            <p class="fine"><strong style="color:var(--accent)">Guarantee:</strong> 100% credit toward a Ship Sprint if you sign within 14 days.</p>
+          </article>
+          <article class="card">
+            <h3>2. Ship Sprint</h3>
+            <p class="price">$2,000–$5,000</p>
+            <p style="color:var(--muted); font-size:0.95rem">Fixed-scope build of the #1 candidate. Handover docs + basic observability (alerts when it fails). You own the stack. Scope locked before kickoff; change requests = new quote.</p>
+          </article>
+          <article class="card">
+            <h3>3. Watch &amp; Iterate</h3>
+            <p class="price">$500–$1,500/mo</p>
+            <p style="color:var(--muted); font-size:0.95rem">Monitoring, micro-fixes, monthly metrics pack (runs, failures, hours saved estimate). LLM/tool costs billed separately with 10–30% markup + a monthly cap you set.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <p class="eyebrow">Process</p>
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li><strong>30-min intake</strong> — map the 4 workflows; pick where the pain is loudest.</li>
+          <li><strong>Audit week</strong> — shadow + measure; deliver the ranked 3 + build proposal.</li>
+          <li><strong>Ship Sprint</strong> — lock scope, build #1, hand over with runbooks and alerts.</li>
+          <li><strong>Watch &amp; Iterate (optional)</strong> — we babysit it; you get monthly numbers, not vibes.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="cta">
+      <div class="wrap">
+        <div class="cta-block">
+          <p class="eyebrow">Say hi</p>
+          <h2>Book the AI Ops Audit</h2>
+          <p class="lead">Pay for the Audit → we schedule the 30-min intake and kick off within days. No deck. No workshop.</p>
+          <div class="btn-row" style="justify-content:center">
+            <a class="btn-primary" id="checkout" href="STRIPE_PAYMENT_LINK_PLACEHOLDER">Pay for Audit (Stripe)</a>
+            <a class="btn-secondary" href="mailto:hello.aiops.agencies@gmail.com?subject=AI%20Ops%20Audit">Or email hello.aiops.agencies@gmail.com</a>
+          </div>
+          <p class="note" role="note">
+            <strong>Founder note:</strong> Replace <code>STRIPE_PAYMENT_LINK_PLACEHOLDER</code> with your live Stripe Payment Link before sharing this page. The button above will not charge anyone until that swap is done.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      AI Ops for Boutique Agencies · Fixed price · Shipped in days
+    </div>
+  </footer>
+</body>
+</html>
